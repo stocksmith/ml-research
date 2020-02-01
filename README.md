@@ -1,2 +1,3 @@
 # ml-research
-ML Modelling &amp; Stock Resarch
+
+ML Modelling and Stock Resarch
