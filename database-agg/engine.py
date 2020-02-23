@@ -12,16 +12,7 @@ cred = credentials.Certificate('stocksmith.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-temp = {}
-temp['date'] = 2018-12-28
-temp['open'] = 65.45
-testId = str(1)
-doc_ref = db.collection(u'datasets').document(u'test')
-doc_ref.set({
-    testId : temp
-}, merge=True)
 
-date    volume       open      close       high        low adjclose
 
 a = pd.read_csv(filepath_or_buffer = "../datasets/a.csv")
 
@@ -38,6 +29,12 @@ for index, row in a.iterrows():
         temp['low'] = row['low']
         temp['high'] = row['high']
         temp['adjclose'] = temp['adjclose']
+        
+        tempId = str(index)
+        doc_ref = db.collection(u'datasets').document(u'a')
+        doc_ref.set({
+            tempID : temp
+        }, merge=True)
 
 
         
