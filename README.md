@@ -16,7 +16,7 @@ Scripts to add data to database with proper time and json formatting, has fireba
 
 The collection of datasets are we are using for reference. 
 
-**r-anlysis/**
+**r-analysis/**
 
 Multiple R files with a reference inital markdown and inital .docx files to generate reports as well as understand how to analyze large CSVs with R. 
 
