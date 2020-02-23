@@ -31,10 +31,11 @@ y = []
 for i in peaks:
     peak_arr[i] = data_open[i]
     x.append(data_open[i])
-    y.append(data_open[i])
+    y.append(timestamps[i])
 
 plt.figure(figsize=(10,5))
 pl.plot(timestamps, data_open, 'r-',color="red",label='unfiltered')
+plt.plot(y,x,ls="", color="blue",marker="o", label="points")
 plt.title("MSFT Stock")
 pl.grid()
 pl.show()
