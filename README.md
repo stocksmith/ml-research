@@ -1,3 +1,7 @@
+[![License](https://img.shields.io/badge/License-GPL%203.0-brightgreen.svg)](./LICENSE)
+![GitHub stars](https://img.shields.io/github/stars/dsc-umass/social-insights.svg)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/dsc-umass/social-insights.svg?color=red)
+
 # Machine Learning Research
 
 An analysis of historic stock datasets and building a machine learning algorithm to predict stock behavior. 
