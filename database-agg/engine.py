@@ -12,8 +12,6 @@ cred = credentials.Certificate('stocksmith.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-
-
 a = pd.read_csv(filepath_or_buffer = "../datasets/a.csv")
 
 for index, row in a.iterrows():
@@ -28,15 +26,13 @@ for index, row in a.iterrows():
         temp['close'] = row['close']
         temp['low'] = row['low']
         temp['high'] = row['high']
-        temp['adjclose'] = temp['adjclose']
+        temp['adjclose'] = row['adjclose']
         
         tempId = str(index)
         doc_ref = db.collection(u'datasets').document(u'a')
         doc_ref.set({
-            tempID : temp
+            tempId : temp
         }, merge=True)
-
-
         
     except:
         print("An exception occurred")
