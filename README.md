@@ -6,6 +6,16 @@
 
 An analysis of historic stock datasets and building a machine learning algorithm to predict stock behavior. 
 
+## Project Structure 
+
+database-agg/
+
+datasets/
+
+
+r-anlysis/
+
+real-time-data/
 
 ## Getting Started
 
