@@ -52,3 +52,10 @@ summary(pred.1)
 residual <- test.data$close - pred.1[,1]
 print(residual)
 ```
+
+
+
+
+
+
+
