@@ -15,10 +15,10 @@ db = firestore.client()
 temp = {}
 temp['date'] = 2018-12-28
 temp['open'] = 65.45
-i_id = 0
+testId = 0
 doc_ref = db.collection(u'datasets').document(u'test')
 doc_ref.set({
-    u'hello': temp
+    0 : temp
 }, merge=True)
 
 
