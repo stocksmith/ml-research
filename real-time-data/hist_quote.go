@@ -7,23 +7,6 @@ import (
 	"github.com/piquette/finance-go/datetime"
 )
 
-func main() {
-	historic_quotes()
-}
-
-func quote() {
-
-	q, err := quote.Get("AAPL")
-	if err != nil {
-		// Uh-oh.
-		panic(err)
-	}
-
-	// Success!
-	fmt.Println(q)
-
-}
-
 func historic_quotes() {
 	params := &chart.Params{
 		Symbol:   "TWTR",
