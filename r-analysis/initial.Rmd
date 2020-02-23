@@ -16,6 +16,7 @@ library(GGally)
 a <- read.csv("../datasets/A.csv")
 dim(a)
 head(a, 5)
+print(a)
 ```
 
 ## Plots
