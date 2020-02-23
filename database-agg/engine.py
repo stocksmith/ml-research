@@ -15,7 +15,7 @@ db = firestore.client()
 temp = {}
 temp['date'] = 2018-12-28
 temp['open'] = 65.45
-testId = str(0)
+testId = str(1)
 doc_ref = db.collection(u'datasets').document(u'test')
 doc_ref.set({
     testId : temp
