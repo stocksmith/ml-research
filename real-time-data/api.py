@@ -2,6 +2,9 @@ from flask import Flask, jsonify
 from flask import abort
 import json
 
+import yfinance as yf
+import pandas as pd
+
 app = Flask(__name__)
 
 #API description
@@ -24,13 +27,13 @@ apiDescription = [
 def get_dataset(query):
     return jsonify({'description': apiDescription[0]})
 
-@app.route('/stocksmith/api/dataset/<string:query>', methods=['GET'])
-def get_dataset(query):
+@app.route('/stocksmith/api/stock-data/<string:query>', methods=['GET'])
+def get_stock_data(query):
     return jsonify({'description': apiDescription[0]})
 
 
-@app.route('/stocksmith/api/dataset/<string:query>', methods=['GET'])
-def get_dataset(query):
+@app.route('/stocksmith/api/stock-info/<string:query>', methods=['GET'])
+def get_stock_info(query):
     return jsonify({'description': apiDescription[0]})
 
 
