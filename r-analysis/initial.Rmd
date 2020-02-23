@@ -1,7 +1,9 @@
 ---
 title: "initial"
-output: html_document
 author: "Abhinav Tripathy"
+output:
+  word_document: default
+  html_document: default
 ---
 
 ## Libraries
@@ -16,7 +18,6 @@ library(GGally)
 a <- read.csv("../datasets/A.csv")
 dim(a)
 head(a, 5)
-print(a)
 ```
 
 ## Plots
