@@ -15,8 +15,8 @@ doc_ref.set({
 })
 
 
-users_ref = db.collection(u'users')
-docs = users_ref.stream()
+# users_ref = db.collection(u'users')
+# docs = users_ref.stream()
 
-for doc in docs:
-    print(u'{} => {}'.format(doc.id, doc.to_dict()))
+# for doc in docs:
+#     print(u'{} => {}'.format(doc.id, doc.to_dict()))
