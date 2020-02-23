@@ -1,6 +1,6 @@
 import pandas as pd
 # data = pd.read_csv('../datasets/NASDAQ.txt', sep=" ", header=None)
-data = pd.read_fwf('../datasets/NASDAQ.txt')
+data = pd.read_fwf('../datasets/NYSE.txt')
 
 company_list = []
 
