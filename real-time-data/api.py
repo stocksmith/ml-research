@@ -20,19 +20,19 @@ apiDescription = [
 # /stock-info/{company-abbreviation}
 
 
-@app.route('/health-insights/api/v1.0/about', methods=['GET'])
-def get_tasks():
+@app.route('/stocksmith/api/dataset/<string:query>', methods=['GET'])
+def get_dataset(query):
     return jsonify({'description': apiDescription[0]})
 
-@app.route('/health-insights/api/v1.0/<string:query>', methods=['GET'])
-def get_query(query):
-    
-    return jsonify({'response': decoded})
+@app.route('/stocksmith/api/dataset/<string:query>', methods=['GET'])
+def get_dataset(query):
+    return jsonify({'description': apiDescription[0]})
 
-app.route('/health-insights/api/v1.0/<string:query>', methods=['GET'])
-def get_query(query):
-    
-    return jsonify({'response': decoded})
+
+@app.route('/stocksmith/api/dataset/<string:query>', methods=['GET'])
+def get_dataset(query):
+    return jsonify({'description': apiDescription[0]})
+
 
 
 # Helper Functions 
