@@ -30,6 +30,11 @@ plot(a$date, a$close, xlab="dates", ylab="stock price-closing")
 
 
 ```{r, include=TRUE}
+fit.1 <- lm(close ~ open, data=a) 
+summary(fit.1)
+```
+
+```{r, include=TRUE}
 library(GGally)
 babies <- na.omit(read.csv('babies.csv'))
 babies$parity <- as.factor(babies$parity)
