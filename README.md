@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/License-GPL%203.0-brightgreen.svg)](./LICENSE)
-![GitHub stars](https://img.shields.io/github/stars/dsc-umass/social-insights.svg)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/dsc-umass/social-insights.svg?color=red)
+![GitHub stars](https://img.shields.io/github/stars/stocksmith/ml-research.svg)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/stocksmith/ml-research.svg?color=red)
 
 # Machine Learning Research
 
