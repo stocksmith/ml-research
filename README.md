@@ -8,14 +8,17 @@ An analysis of historic stock datasets and building a machine learning algorithm
 
 ## Project Structure 
 
-database-agg/
+**database-agg/**
+Scripts to add data to database with proper time and json formatting, has firebase scripts that will add
 
-datasets/
+**datasets/**
+The collection of datasets are we are using for reference. 
 
+**r-anlysis/**
+Multiple R files with a reference inital markdown and inital .docx files to generate reports as well as understand how to analyze large CSVs with R. 
 
-r-anlysis/
-
-real-time-data/
+**real-time-data/**
+Python API that uses Yahoo Finance API to get real time stock data. viz.py has plotting peaks of stocks over max 1 year.  
 
 ## Getting Started
 
