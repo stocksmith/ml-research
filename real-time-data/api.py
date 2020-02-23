@@ -39,8 +39,6 @@ def get_stock_info(query):
     stock = yf.Ticker(query)
     return stock.info
 
-
-
 # Helper Functions 
 
 
