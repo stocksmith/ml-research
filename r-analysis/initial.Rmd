@@ -18,6 +18,16 @@ dim(a)
 head(a, 5)
 ```
 
+## Plots
+
+
+```{r, include=TRUE}
+plot(a$date, a$open, xlab="dates", ylab="stock price-opening")
+plot(a$date, a$close, xlab="dates", ylab="stock price-closing")
+
+```
+
+
 
 ```{r, include=TRUE}
 library(GGally)
