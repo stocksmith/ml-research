@@ -22,7 +22,7 @@ Multiple R files with a reference inital markdown and inital .docx files to gene
 
 **real-time-data/**
 
-Python API that uses Yahoo Finance API to get real time stock data. viz.py has plotting peaks of stocks over max 1 year.  
+Python API that uses Yahoo Finance API to get real time stock data. viz.py has plotting peaks of stocks over max 1 year. The folder also includes Go scripts for real time finance data scraping. 
 
 ## Getting Started
 
