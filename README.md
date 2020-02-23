@@ -9,7 +9,7 @@ An analysis of historic stock datasets and building a machine learning algorithm
 ## Project Structure 
 
 **database-agg/**
-Scripts to add data to database with proper time and json formatting, has firebase scripts that will add
+Scripts to add data to database with proper time and json formatting, has firebase scripts that will add data directly to firestore.
 
 **datasets/**
 The collection of datasets are we are using for reference. 
