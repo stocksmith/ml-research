@@ -7,7 +7,7 @@ author: "Abhinav Tripathy"
 ## Libraries
 
 ```{r, include=TRUE}
-
+library(GGally)
 ```
 
 
@@ -35,8 +35,11 @@ summary(fit.1)
 coef(fit.1)
 ```
 
+## GG Pairs
 ```{r, include=TRUE}
-library(GGally)
+
+a.gg <- a[, c("volume", "high", "low", "open", "close", "adjclose")]
+
 babies <- na.omit(read.csv('babies.csv'))
 babies$parity <- as.factor(babies$parity)
 babies$smoke <- as.factor(babies$smoke)
