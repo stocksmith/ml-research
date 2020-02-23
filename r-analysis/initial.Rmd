@@ -39,11 +39,5 @@ coef(fit.1)
 ```{r, include=TRUE}
 
 a.gg <- a[, c("volume", "high", "low", "open", "close", "adjclose")]
-
-babies <- na.omit(read.csv('babies.csv'))
-babies$parity <- as.factor(babies$parity)
-babies$smoke <- as.factor(babies$smoke)
-babies.dat <- babies[, c("gestation", "parity", "age", "height","weight", "smoke", "bwt")]
-ggpairs(data = babies.dat)
-ggcorr(data = babies.dat, label = TRUE)
+ggpairs(data=a.gg)
 ```
