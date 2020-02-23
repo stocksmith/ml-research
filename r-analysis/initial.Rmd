@@ -28,6 +28,7 @@ plot(a$date, a$close, xlab="dates", ylab="stock price-closing")
 ```
 
 
+## Linear Regression 
 
 ```{r, include=TRUE}
 fit.1 <- lm(close ~ open, data=a) 
@@ -42,7 +43,12 @@ a.gg <- a[, c("volume", "high", "low", "open", "close", "adjclose")]
 ggpairs(data=a.gg)
 ```
 
-## GG Pairs
+## Testing linear regression model accuracy
 ```{r, include=TRUE}
-
+test.data <- a[1,c("close", "open")]
+pred.1 <- predict(fit.1, test.data, interval = "prediction", level = 0.95)
+summary(pred.1)
+# Subtracting actual value from the linear model prediction
+residual <- test.data$close - pred.1[,1]
+print(residual)
 ```
