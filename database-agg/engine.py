@@ -29,10 +29,13 @@ for index, row in a.iterrows():
         temp['adjclose'] = row['adjclose']
         
         tempId = str(index)
-        doc_ref = db.collection(u'datasets').document(u'a')
+        doc_ref = db.collection(u'datasets').document(u'a-final')
         doc_ref.set({
             tempId : temp
         }, merge=True)
+        print("success", index)
         
     except:
         print("An exception occurred")
+
+print("uploaded data to firebase")
