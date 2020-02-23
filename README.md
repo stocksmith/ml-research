@@ -14,7 +14,7 @@ Scripts to add data to database with proper time and json formatting, has fireba
 
 **datasets/**
 
-The collection of datasets are we are using for reference. 
+The collection of datasets we are using for sample analysis.
 
 **r-analysis/**
 
