@@ -19,7 +19,7 @@ apiDescription = [
 # Paths: 
 
 # /dataset/{name}
-# /stock-data/{time frame}
+# /stock-data/{company-name}/{time frame}
 # /stock-info/{company-abbreviation}
 
 
@@ -27,10 +27,12 @@ apiDescription = [
 def get_dataset(query):
     return "hello"
 
-@app.route('/stocksmith/api/stock-data/<string:query>', methods=['GET'])
-def get_stock_data(query):
-    return jsonify({'description': apiDescription[0]})
-
+@app.route('/stocksmith/api/stock-data/<string:name>/<string:time>', methods=['GET'])
+def get_stock_data(name, time):
+    stock = yf.Ticker(name)
+    a = stock.history(period=time)
+    print(a)
+    return a.to_json(orient='index',index=True)
 
 @app.route('/stocksmith/api/stock-info/<string:query>', methods=['GET'])
 def get_stock_info(query):
