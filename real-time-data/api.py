@@ -25,7 +25,7 @@ apiDescription = [
 
 @app.route('/stocksmith/api/dataset/<string:query>', methods=['GET'])
 def get_dataset(query):
-    return jsonify({'description': apiDescription[0]})
+    return "hello"
 
 @app.route('/stocksmith/api/stock-data/<string:query>', methods=['GET'])
 def get_stock_data(query):
@@ -34,7 +34,8 @@ def get_stock_data(query):
 
 @app.route('/stocksmith/api/stock-info/<string:query>', methods=['GET'])
 def get_stock_info(query):
-    return jsonify({'description': apiDescription[0]})
+    stock = yf.Ticker(query)
+    return stock.info
 
 
 
@@ -42,4 +43,4 @@ def get_stock_info(query):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=80)
+    app.run(debug=True, host='0.0.0.0', port=3000)
