@@ -4,11 +4,18 @@ output: html_document
 author: "Abhinav Tripathy"
 ---
 
+## Libraries
+
+```{r, include=TRUE}
+
+```
+
 
 ## Setup
 ```{r, include=TRUE}
-sample <- read.csv("../datasets/sample.csv")
-print(sample)
+a <- read.csv("../datasets/A.csv")
+dim(a)
+head(a, 5)
 ```
 
 
