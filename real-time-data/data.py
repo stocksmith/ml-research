@@ -8,7 +8,7 @@ returns
 """
 
 # get stock info
-print(msft.info)
+msft.info
 
 """
 returns:
@@ -24,4 +24,4 @@ returns:
 """
 
 # get historical market data, here max is 5 years.
-msft.history(period="max")
+print(msft.history(period="max"))
