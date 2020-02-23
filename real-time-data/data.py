@@ -65,4 +65,4 @@ returns:
 
 # get historical market data, here max is 5 years.
 a = msft.history(period="1mo")
-a.to_csv('out.csv')
+a.to_csv('msft.csv')
