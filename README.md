@@ -5,7 +5,7 @@
 # Machine Learning Research
 
 <div><p align="center">
-<center><h4>Meetsync is supported by:</h4><a href="https://umass.acm.org/"><img width="300" src="assets/acm_umass.jpg" target="_blank"></a>
+<center><h4>Stocksmith is supported by:</h4><a href="https://umass.acm.org/"><img width="300" src="assets/acm_umass.jpg" target="_blank"></a>
 <a href="https://umassdsc.com/" target="_blank"><img width="300" src="assets/dsc_umass.jpg"></a>
 <!-- <img width="250" src="assets/acm_umass.jpg"> -->
 </center></p></div>
