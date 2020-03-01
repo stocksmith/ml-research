@@ -19,7 +19,7 @@ import time #helper libraries
 # file is downloaded from finance.yahoo.com, 1.1.1997-1.1.2017
 # training data = 1.1.1997 - 1.1.2007
 # test data = 1.1.2007 - 1.1.2017
-input_file="../real-time-data/msft.csv"
+input_file="DIS.csv"
 
 # convert an array of values into a dataset matrix
 def create_dataset(dataset, look_back=1):
