@@ -30,6 +30,9 @@ Multiple R files with a reference inital markdown and inital .docx files to gene
 
 Python API that uses Yahoo Finance API to get real time stock data. viz.py has plotting peaks of stocks over max 1 year. The folder also includes Go scripts for real time finance data scraping. 
 
+**research-rnn/**
+Building and enchancing Recursive Neural Network models to predict stock prices. 
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine.
