@@ -44,7 +44,7 @@ def cumulative_return(symbol,df):
     Returns a dataframe with the cumulative returns of the stock data. 
     '''
     df_cr = df
-    df_cr= changeCol(df_cr,'Adj Close',"Cumulative Returns of  {}".format(symbol))
+    df_cr= changeCol(df_cr,'Adj Close',"Cumulative Returns of {}".format(symbol))
     df_cr[1:] = (df[1:]/df.iloc[0])-1
     df_cr.iloc[0] = 0
     return df_cr
@@ -98,6 +98,7 @@ def beta(symbol):
     slope, intercept, r_value, p_value, std_err = stats.linregress(X, Y)
     print("5Y monthly Beta for {}:".format(symbol), round(slope,3))
     return slope
+
 
 
 
