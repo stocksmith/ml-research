@@ -90,6 +90,7 @@ def beta(symbol):
 
     df = df.join(df_spy)
     df = df.dropna()
+    print(df)
 
     X = df['S&P']
     Y = df['Price']
@@ -109,7 +110,7 @@ Plot - Whether you want to plot the results or not. False by default
 '''
 
 
-
+beta("GOOG")
 
 
 
