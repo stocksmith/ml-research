@@ -2,3 +2,5 @@ r-analysis/.Rproj.user
 database-agg/stocksmith.json
 database-agg/.ipynb_checkpoints
 .Rproj.user
+__pycache__
+.DS_Store
