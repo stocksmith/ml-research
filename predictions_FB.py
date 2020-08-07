@@ -76,15 +76,16 @@ def fb_predict(dfi, plot = False, days =1):
         plt.show()
     return mean_err, pred
 
-symbol = "AZPN"
-days = 5
-stock = yf.Ticker(symbol)
-df = stock.history(period="max")
-df = df[['Close']]
-me , pred= fb_predict(df, days = days)
-print("The prediction after {} days is :\n".format(days))
-print(pred)
-print("\n Mean Percentage Error : ", me)
+#Sample Run 
+# symbol = "AZPN"
+# days = 5
+# stock = yf.Ticker(symbol)
+# df = stock.history(period="max")
+# df = df[['Close']]
+# me , pred= fb_predict(df, days = days)
+# print("\n The prediction for {} after {} days is :\n".format(symbol, days))
+# print(pred)
+# print("\n Mean Percentage Error : ", me)
 
 
 
