@@ -28,8 +28,16 @@ class suppress_stdout_stderr(object):
         os.close(self.null_fds[0])
         os.close(self.null_fds[1])
 
-def fb_predict(symbol, dfi, plot = False, days =1):
+def fb_predict(dfi, plot = False, days =1):
     '''
+    This function takes in:
+    dfi - A dataframe with just the column of close price named as Close and date as index 
+    plot - Whether you want to plot the resulyts or not( Default is False)
+    days - Number of days into the future you want to predict (Dafault is 1)
+
+    This function returns:
+    mean_err - The mean percentage error in calculations
+    pred - A pandas datafrmae with predictions, upper and lower bounds
 
     '''
     df = dfi.copy()
@@ -72,8 +80,8 @@ symbol = "AZPN"
 days = 5
 stock = yf.Ticker(symbol)
 df = stock.history(period="max")
-df = df[['Open',  'High',  'Low',  'Close', 'Volume']]
-me , pred= fb_predict(symbol, df, days = days)
+df = df[['Close']]
+me , pred= fb_predict(df, days = days)
 print("The prediction after {} days is :\n".format(days))
 print(pred)
 print("\n Mean Percentage Error : ", me)
