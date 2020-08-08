@@ -6,8 +6,8 @@ import yfinance as yf
 import math
 import os
 import sys
-import pandas as pd
-pd.options.mode.chained_assignment = None
+from sklearn.metrics import mean_squared_error
+
 
 
 class suppress_stdout_stderr(object):
@@ -28,18 +28,27 @@ class suppress_stdout_stderr(object):
         os.close(self.null_fds[0])
         os.close(self.null_fds[1])
 
-def fb_predict(dfi, plot = False, days =1):
+def fb_predict(dfi, plot = False, days =1, verbose = True):
     '''
     This function takes in:
-    dfi - A dataframe with just the column of close price named as Close and date as index 
-    plot - Whether you want to plot the resulyts or not( Default is False)
-    days - Number of days into the future you want to predict (Dafault is 1)
+    :param dfi - A dataframe with just the column of close price named as Close and date as index 
+    :param plot - Whether you want to plot the resulyts or not( Default is False)
+    :param days - Number of days into the future you want to predict (Dafault is 1)
+    :param verbose - If you want the output of the model workings 
 
-    This function returns:
-    mean_err - The mean percentage error in calculations
-    pred - A pandas datafrmae with predictions, upper and lower bounds
+    :type dfi - pandas.dataframe
+    :type plot - Boolean Value
+    :type days - Integer
+    :type verbose - Boolean Value
 
+    :return mean_err - The mean percentage error in calculations
+    :return pred - A pandas datafrmae with predictions, upper and lower bounds
+
+    :rtype mean_err - float
+    :rtype pred - pandas.dataframe
     '''
+    
+    pd.options.mode.chained_assignment = None
     df = dfi.copy()
     arr = [i for i in range(len(df))]
     ar = df.index
@@ -60,9 +69,12 @@ def fb_predict(dfi, plot = False, days =1):
     test['predict'] = test_predict['trend']
     test['error'] =((test['y'] - test['predict'])/test['y'])*100
     mean_err = round(test['error'].mean(),3)
+    err = round(math.sqrt(mean_squared_error(test['y'].values,test['predict'].values)), 3)
+    print(err)
     mn = Prophet(daily_seasonality = True) 
-    with suppress_stdout_stderr():
-        mn.fit(df) 
+    if not verbose:
+        with suppress_stdout_stderr():
+            mn.fit(df) 
     future = mn.make_future_dataframe(periods=days) 
     prediction = mn.predict(future)
     pred = pd.DataFrame(prediction[-days:][['ds','trend', 'yhat_upper', 'yhat_lower']])
@@ -77,15 +89,15 @@ def fb_predict(dfi, plot = False, days =1):
     return mean_err, pred
 
 #Sample Run 
-# symbol = "AZPN"
-# days = 5
-# stock = yf.Ticker(symbol)
-# df = stock.history(period="max")
-# df = df[['Close']]
-# me , pred= fb_predict(df, days = days)
-# print("\n The prediction for {} after {} days is :\n".format(symbol, days))
-# print(pred)
-# print("\n Mean Percentage Error : ", me)
+symbol = "AZPN"
+days = 5
+stock = yf.Ticker(symbol)
+df = stock.history(period="max")
+df = df[['Close']]
+me , pred= fb_predict(df, days = days, verbose=False)
+print("\n The prediction for {} after {} days is :\n".format(symbol, days))
+print(pred)
+print("\n Mean Percentage Error : ", me)
 
 
 
