@@ -9,7 +9,6 @@ import sys
 from sklearn.metrics import mean_squared_error
 
 
-
 class suppress_stdout_stderr(object):
     '''
     Used to supress the verbose output of the inner workings of the FB prophet model
@@ -28,9 +27,8 @@ class suppress_stdout_stderr(object):
         os.close(self.null_fds[0])
         os.close(self.null_fds[1])
 
-def fb_predict(dfi, plot = False, days =1, verbose = True):
+def fb_predict(df, plot: bool=False, days: int=1, verbose: bool=True):
     '''
-    This function takes in:
     :param dfi - A dataframe with just the column of close price named as Close and date as index 
     :param plot - Whether you want to plot the resulyts or not( Default is False)
     :param days - Number of days into the future you want to predict (Dafault is 1)
@@ -47,9 +45,8 @@ def fb_predict(dfi, plot = False, days =1, verbose = True):
     :rtype mean_err - float
     :rtype pred - pandas.dataframe
     '''
-    
+
     pd.options.mode.chained_assignment = None
-    df = dfi.copy()
     arr = [i for i in range(len(df))]
     ar = df.index
     df.index= arr
@@ -60,28 +57,28 @@ def fb_predict(dfi, plot = False, days =1, verbose = True):
     train_length = math.floor(0.1*len(df))
     train = df[:-train_length]
     test = df[-train_length:]
-    m = Prophet(daily_seasonality = True) 
+    error_check = Prophet(daily_seasonality = True) 
     with suppress_stdout_stderr():
-        m.fit(train) 
-    future = m.make_future_dataframe(periods=train_length) 
-    prediction = m.predict(future)
+        error_check.fit(train) 
+    future = error_check.make_future_dataframe(periods=train_length) 
+    prediction = error_check.predict(future)
     test_predict = prediction[-train_length:]
     test['predict'] = test_predict['trend']
     test['error'] =((test['y'] - test['predict'])/test['y'])*100
     mean_err = round(test['error'].mean(),3)
     err = round(math.sqrt(mean_squared_error(test['y'].values,test['predict'].values)), 3)
     print(err)
-    mn = Prophet(daily_seasonality = True) 
+    predictions = Prophet(daily_seasonality = True) 
     if not verbose:
         with suppress_stdout_stderr():
-            mn.fit(df) 
-    future = mn.make_future_dataframe(periods=days) 
-    prediction = mn.predict(future)
+            predictions.fit(df) 
+    future = predictions.make_future_dataframe(periods=days) 
+    prediction = predictions.predict(future)
     pred = pd.DataFrame(prediction[-days:][['ds','trend', 'yhat_upper', 'yhat_lower']])
     pred.rename(columns = {'ds' : 'Date', 'trend':'Guess', 'yhat_lower':'Lower Bound', 'yhat_upper':'Upper Bound'}, inplace = True)
     pred.set_index(np.arange(1,len(pred)+1), inplace = True)
     if plot:
-        m.plot(prediction)
+        predictions.plot(prediction)
         plt.title("Prediction of the AZPN Stock Price using the Prophet")
         plt.xlabel("Date")
         plt.ylabel("Close Stock Price")
@@ -95,9 +92,9 @@ stock = yf.Ticker(symbol)
 df = stock.history(period="max")
 df = df[['Close']]
 me , pred= fb_predict(df, days = days, verbose=False)
-print("\n The prediction for {} after {} days is :\n".format(symbol, days))
+print("\nThe prediction for {} after {} days is :\n".format(symbol, days))
 print(pred)
-print("\n Mean Percentage Error : ", me)
+print("\nMean Percentage Error : ", me)
 
 
 
