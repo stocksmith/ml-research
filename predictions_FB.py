@@ -27,7 +27,23 @@ class suppress_stdout_stderr(object):
         os.close(self.null_fds[0])
         os.close(self.null_fds[1])
 
-def fb_predict(df, plot: bool=False, days: int=1, verbose: bool=True):
+def fb_error(df):
+    train_length = math.floor(0.1*len(df))
+    train = df[:-train_length]
+    test = df[-train_length:]
+    error_check = Prophet(daily_seasonality = True) 
+    with suppress_stdout_stderr():
+        error_check.fit(train) 
+    future = error_check.make_future_dataframe(periods=train_length) 
+    prediction = error_check.predict(future)
+    test_predict = prediction[-train_length:]
+    test['predict'] = test_predict['trend']
+    test['error'] =((test['y'] - test['predict'])/test['y'])*100
+    mean_err = round(test['error'].mean(),3)
+    return mean_err
+
+
+def fb_predict(df, plot: bool=False, days: int=1, verbose: bool=True, error= False):
     '''
     :param dfi - A dataframe with just the column of close price named as Close and date as index 
     :param plot - Whether you want to plot the resulyts or not( Default is False)
@@ -45,7 +61,6 @@ def fb_predict(df, plot: bool=False, days: int=1, verbose: bool=True):
     :rtype mean_err - float
     :rtype pred - pandas.dataframe
     '''
-
     pd.options.mode.chained_assignment = None
     arr = [i for i in range(len(df))]
     ar = df.index
@@ -54,20 +69,9 @@ def fb_predict(df, plot: bool=False, days: int=1, verbose: bool=True):
     df = df[['ds', 'Close']]
     df.rename(columns = {"Close":'y'}, inplace = True)
 
-    train_length = math.floor(0.1*len(df))
-    train = df[:-train_length]
-    test = df[-train_length:]
-    error_check = Prophet(daily_seasonality = True) 
-    with suppress_stdout_stderr():
-        error_check.fit(train) 
-    future = error_check.make_future_dataframe(periods=train_length) 
-    prediction = error_check.predict(future)
-    test_predict = prediction[-train_length:]
-    test['predict'] = test_predict['trend']
-    test['error'] =((test['y'] - test['predict'])/test['y'])*100
-    mean_err = round(test['error'].mean(),3)
-    err = round(math.sqrt(mean_squared_error(test['y'].values,test['predict'].values)), 3)
-    print(err)
+    if error:
+        mean_err = fb_error(df)
+
     predictions = Prophet(daily_seasonality = True) 
     if not verbose:
         with suppress_stdout_stderr():
@@ -83,18 +87,11 @@ def fb_predict(df, plot: bool=False, days: int=1, verbose: bool=True):
         plt.xlabel("Date")
         plt.ylabel("Close Stock Price")
         plt.show()
-    return mean_err, pred
+    if error:
+        return mean_err, pred
+    else:
+        return pred
 
-#Sample Run 
-symbol = "AZPN"
-days = 5
-stock = yf.Ticker(symbol)
-df = stock.history(period="max")
-df = df[['Close']]
-me , pred= fb_predict(df, days = days, verbose=False)
-print("\nThe prediction for {} after {} days is :\n".format(symbol, days))
-print(pred)
-print("\nMean Percentage Error : ", me)
 
 
 
